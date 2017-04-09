@@ -1,0 +1,8 @@
+Hayek,Salma,100
+BUNDY,TED,88
+bond,allen,85
+SMITH,ALLAN,85
+smith,bob,85
+SMITH,FRANCIS,85
+KING,MADISON,83
+,Madonna,10

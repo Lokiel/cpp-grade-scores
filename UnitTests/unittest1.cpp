@@ -375,7 +375,7 @@ namespace UnitTests
             // Note: The retrieved order will be alphabetical order of surname
             //       and alphabetical order of first name within that surname.
 
-            std::set<CResult>::iterator result(results.begin());
+            auto result(results.begin());
 
             Assert::AreEqual(std::string("Adams,Joe"),
                 std::string(result->surname() + ',' + result->firstName()),
@@ -420,7 +420,7 @@ namespace UnitTests
             //       score, then surname within that score, then first name
             //       within that surname.
 
-            std::set<CResult>::iterator result(results.begin());
+            auto result(results.begin());
 
             Assert::AreEqual(std::string("Brown,Nozer"),
                 std::string(result->surname() + ',' + result->firstName()),

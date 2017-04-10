@@ -130,6 +130,7 @@ int main(int argc, char* argv[])
 #ifdef _DEBUG
         std::cerr << "\n*** " << e.what() << std::endl;
 #endif
+        exit(4);
     }
 
     catch(Results::OutputFileException e)
@@ -137,6 +138,7 @@ int main(int argc, char* argv[])
 #ifdef _DEBUG
         std::cerr << "\n*** " << e.what() << std::endl;
 #endif
+        exit(5);
     }
 
 	return 0;

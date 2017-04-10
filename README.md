@@ -37,13 +37,15 @@ KING, MADISON, 83
 ## Notes
 
 * I implemented the solution in C++ using Visual Studio 2017 and Python 3.
-* The Visual Studio 2017 solution file is *grades-scores.sln* in the top-level directory.
-* The Python 3 solution can be found in *Python3version/grade-scores.py*.
-* The test input file I used is *students.txt* and the generated file is *students-graded.txt*; both are in the top-level directory.
+* The Visual Studio 2017 solution file is **grades-scores.sln** in the top-level directory.
+* The Python 3 script can be found in **Python3version/grade-scores.py**.
+* The test input file I used is **students.txt** and the generated file is **students-graded.txt**; both are in the top-level directory.
 * I allowed for the case where a student has only one name, in which case it was assumed to be in the input file's "First Name" field and the "Surname" field is null/empty.
 * Invalid input file lines (those not containing exactly 3 fields when delimited by a comma) were ignored.
 * Duplicate student names were handled by ignoring duplicates.
 * Console output, including error messages and duplicate students, is only generated for Debug builds (I found this an odd requirement given that for Release builds, the user would be unaware if the input file had any problems - possibly the requirement is not a practical one but more for the sake of the exercise).
 * If the console application is successful, or the user has requested usage information, it returns with system status 0; if any errors occur, a non-zero system status is returned.
 
+## To Do
 
+* Write Unit tests for the CResults class. I attempted to do this but failed to determine how to import an input file into the test project (the constructor always failed because the file could not be found).

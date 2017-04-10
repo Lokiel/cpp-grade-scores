@@ -270,7 +270,7 @@ namespace UnitTests
         TEST_METHOD(Test_CResult)
         {
             // Constructor test:
-            CResult result("Joe", "Average", 50);
+            Results::CResult result("Joe", "Average", 50);
             Assert::AreEqual(std::string("Joe"),
                 result.firstName(),
                 L"First name test failed",
@@ -289,7 +289,7 @@ namespace UnitTests
                 LINE_INFO());
 
             // Copy constructor test:
-            CResult copyOfResult(result);
+            Results::CResult copyOfResult(result);
             Assert::AreEqual(std::string("Joe"),
                 copyOfResult.firstName(),
                 L"First name test failed",
@@ -308,7 +308,7 @@ namespace UnitTests
                 LINE_INFO());
 
             // Assignment operator test:
-            CResult assignmentResult = result;
+            Results::CResult assignmentResult = result;
             Assert::AreEqual(std::string("Joe"),
                 assignmentResult.firstName(),
                 L"First name test failed",
@@ -327,7 +327,7 @@ namespace UnitTests
                 LINE_INFO());
 
             // Move constructor test:
-            CResult moveConstructorResult(CResult("Salma", "Hayek", 100));
+            Results::CResult moveConstructorResult(Results::CResult("Salma", "Hayek", 100));
             Assert::AreEqual(std::string("Salma"),
                 moveConstructorResult.firstName(),
                 L"First name test failed",
@@ -346,7 +346,7 @@ namespace UnitTests
                 LINE_INFO());
 
             // Move assignment test:
-            CResult moveAssignmentResult = CResult("John", "Monash", 99);
+            Results::CResult moveAssignmentResult = Results::CResult("John", "Monash", 99);
             Assert::AreEqual(std::string("John"),
                 moveAssignmentResult.firstName(),
                 L"First name test failed",
@@ -367,11 +367,11 @@ namespace UnitTests
         //---------------------------------------------------------------------
         TEST_METHOD(Test_CResultSortOperator)
         {
-            std::set<CResult> results{ CResult("Joe", "Zenner", 50),
-                CResult("Nozer", "Brown", 100),
-                CResult("John", "Brown", 50),
-                CResult("Joe", "Average", 50),
-                CResult("Joe", "Adams", 70) };
+            std::set<Results::CResult> results{ Results::CResult("Joe", "Zenner", 50),
+                Results::CResult("Nozer", "Brown", 100),
+                Results::CResult("John", "Brown", 50),
+                Results::CResult("Joe", "Average", 50),
+                Results::CResult("Joe", "Adams", 70) };
             // Note: The retrieved order will be alphabetical order of surname
             //       and alphabetical order of first name within that surname.
 
@@ -409,12 +409,12 @@ namespace UnitTests
         //---------------------------------------------------------------------
         TEST_METHOD(Test_CResultHighestScoreAndNameComparator)
         {
-            std::set<CResult, CResultHighestScoreAndNameComparator> results{ 
-                CResult("Joe", "Zenner", 50),
-                CResult("Nozer", "Brown", 100),
-                CResult("John", "Brown", 50),
-                CResult("Joe", "Average", 50),
-                CResult("Joe", "Adams", 70) };
+            std::set<Results::CResult, Results::CResultHighestScoreAndNameComparator> results{ 
+                Results::CResult("Joe", "Zenner", 50),
+                Results::CResult("Nozer", "Brown", 100),
+                Results::CResult("John", "Brown", 50),
+                Results::CResult("Joe", "Average", 50),
+                Results::CResult("Joe", "Adams", 70) };
             // Note: These are the same student results as in the previous
             //       test. The retrieved order will be be highest to lowest
             //       score, then surname within that score, then first name
@@ -451,6 +451,7 @@ namespace UnitTests
                 L"5th student test failed",
                 LINE_INFO());
         }
-
+ 
     };  // TEST_CLASS(CResultClass)
+
 }

@@ -9,11 +9,10 @@
 
 #include <fstream>
 #include <iostream>
-#include <set>
 #include <string>
-#include <vector>
 
 #include "CResult.hpp"
+#include "CResults.hpp"
 #include "StringUtils.hpp"
 
 const std::string OUTPUT_FILE_SUFFIX("-graded.txt");
@@ -57,9 +56,7 @@ void printError(const std::string& programName, const std::string& errorMsg)
 
 int main(int argc, char* argv[])
 {
-    std::ifstream inputFile;
-    std::ofstream outputFile;
-    std::string   outputFilePath;
+    std::string outputFilePath;
 
     // Process command line parameters
     //--------------------------------
@@ -82,6 +79,9 @@ int main(int argc, char* argv[])
                 exit(0);
             }
 
+            std::ifstream inputFile;
+            std::ofstream outputFile;
+
             // Ensure that the argument is an existing file:
             inputFile.open(argv[1]);
             if (!inputFile.good())
@@ -102,6 +102,9 @@ int main(int argc, char* argv[])
                 exit(2);
             }
 
+            outputFile.close();
+            inputFile.close();
+
         }   break;
 
 		default:
@@ -109,85 +112,32 @@ int main(int argc, char* argv[])
 			exit(3);
 	}
 
-    // Process the inputFile, adding all valid entries to the results
-    //---------------------------------------------------------------
+    // Process the input file, adding all valid entries to the results
+    //--------------------=-------------------------------------------
 
-    std::set<CResult, CResultHighestScoreAndNameComparator> results;
-
-    const char CSV_FILE_DELIMITER = ',';
-
-    // Token indexes of inputFile fields when each line is tokenised using the
-    // CSV_FILE_DELIMITER:
-    const size_t FIRST_NAME = 0;
-    const size_t SURNAME    = 1;
-    const size_t SCORE      = 2;
-
-    std::string line;
-    int         lineNo = 1;
-    std::vector<std::string> lineTokens;
-    std::set<std::string>    studentsAlreadyProcessed;
-
-    while (getline(inputFile, line))
+    try
     {
-        lineTokens = StringUtils::tokens(line, CSV_FILE_DELIMITER);
-        if (   (lineTokens.size() != 3)  // expected format is <FIRST_NAME>,[SURNAME],<SCORE>
-            || (lineTokens[FIRST_NAME].length() == 0)  // <FIRST_NAME> is mandatory
-            || (lineTokens[SCORE].length() == 0)       // <SCORE> is mandatory
-            || !StringUtils::isPositiveInteger(lineTokens[SCORE]))  // <SCORE> must be a positive integer
-        {
+        Results::CResults results(argv[1]);
+        results.save(outputFilePath);
+
 #ifdef _DEBUG
-            std::cout << "Ignoring invalid line " 
-                << lineNo 
-                << ": \"" 
-                << line 
-                << "\"\n";
+        std::cout << "\n+++ Output written to \"" << outputFilePath << "\"\n";
 #endif
-        }
-        else  // add this Student's result to results if it's not a duplicate
-        {
-            std::string thisStudent(StringUtils::lowercase
-                          (lineTokens[SURNAME] + ',' + lineTokens[FIRST_NAME]));
-            if (studentsAlreadyProcessed.find(thisStudent) 
-                    != studentsAlreadyProcessed.end())  // thisStudent already processed
-            {
-#ifdef _DEBUG
-                std::cout << "Ignoring duplicate student result at line " 
-                    << lineNo
-                    << ": \"" 
-                    << line 
-                    << "\"\n";
-#endif
-            }
-            else
-            {
-                results.emplace(lineTokens[FIRST_NAME],
-                                lineTokens[SURNAME],
-                                std::stoi(lineTokens[SCORE]));
-                studentsAlreadyProcessed.emplace(thisStudent);
-            }
-        }
-
-        ++lineNo;
-    }
-    
-    inputFile.close();
-
-    // Write the sorted results to the outputFile
-    //-------------------------------------------
-
-    for (auto result : results)
-    {
-        outputFile << result.surname()
-            << ',' << result.firstName()
-            << ',' << result.score()
-            << std::endl;
     }
 
-    outputFile.close();
-
+    catch(Results::InputFileException e)
+    {
 #ifdef _DEBUG
-    std::cout << "\n+++ Output written to \"" << outputFilePath << "\"\n";
+        std::cerr << "\n*** " << e.what() << std::endl;
 #endif
+    }
+
+    catch(Results::OutputFileException e)
+    {
+#ifdef _DEBUG
+        std::cerr << "\n*** " << e.what() << std::endl;
+#endif
+    }
 
 	return 0;
 }

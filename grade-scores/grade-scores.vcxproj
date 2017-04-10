@@ -140,12 +140,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CResult.hpp" />
+    <ClInclude Include="CResults.hpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="StringUtils.hpp" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CResult.cpp" />
+    <ClCompile Include="CResults.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

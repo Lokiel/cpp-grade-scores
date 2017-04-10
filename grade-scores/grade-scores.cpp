@@ -56,8 +56,6 @@ void printError(const std::string& programName, const std::string& errorMsg)
 
 int main(int argc, char* argv[])
 {
-    std::string outputFilePath;
-
     // Process command line parameters
     //--------------------------------
 
@@ -78,38 +76,11 @@ int main(int argc, char* argv[])
                 printUsage(EXECUTABLE_NAME);
                 exit(0);
             }
-
-            std::ifstream inputFile;
-            std::ofstream outputFile;
-
-            // Ensure that the argument is an existing file:
-            inputFile.open(argv[1]);
-            if (!inputFile.good())
-            {
-                printError(EXECUTABLE_NAME, 
-                    "Specified file, \"" + std::string(argv[1]) + "\", does not exist!");
-                exit(1);
-            }
-
-            // Ensure that the output file can be written:
-            outputFilePath = StringUtils::newPath(argv[1], OUTPUT_FILE_SUFFIX);
-            outputFile.open(outputFilePath);
-            if (outputFile.fail())
-            {
-                printError(EXECUTABLE_NAME, 
-                    "Failed to access \"" + outputFilePath + "\"!");
-                inputFile.close();
-                exit(2);
-            }
-
-            outputFile.close();
-            inputFile.close();
-
         }   break;
 
 		default:
 			printError(EXECUTABLE_NAME, "Only one input file expected!");
-			exit(3);
+			exit(1);
 	}
 
     // Process the input file, adding all valid entries to the results
@@ -117,6 +88,8 @@ int main(int argc, char* argv[])
 
     try
     {
+        std::string outputFilePath
+                        (StringUtils::newPath(argv[1], OUTPUT_FILE_SUFFIX));
         Results::CResults results(argv[1]);
         results.save(outputFilePath);
 
@@ -130,7 +103,7 @@ int main(int argc, char* argv[])
 #ifdef _DEBUG
         std::cerr << "\n*** " << e.what() << std::endl;
 #endif
-        exit(4);
+        exit(2);
     }
 
     catch(Results::OutputFileException e)
@@ -138,7 +111,7 @@ int main(int argc, char* argv[])
 #ifdef _DEBUG
         std::cerr << "\n*** " << e.what() << std::endl;
 #endif
-        exit(5);
+        exit(3);
     }
 
 	return 0;

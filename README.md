@@ -6,7 +6,7 @@ This is my solution to the following problem:
 Write a console app that:
 * Takes as a parameter a string that represents a text file containing a list of student names, and their scores
 * Orders the names by their score. If scores are the same, order by their last name followed by first name
-* Creates a new text file called <input-file-name>-graded.txt with the list of sorted score and names.
+* Creates a new text file called \<input-file-name\>-graded.txt with the list of sorted score and names.
 * Takes a CSV input file with the format of First Name, Surname, Score
 * Output file format is .csv format with the format of Surname, First Name, Score
 * Shall be able to handle relative and full paths file inputs
@@ -39,7 +39,7 @@ KING, MADISON, 83
 * I implemented the solution in C++ using Visual Studio 2017 and Python 3.
 * The Visual Studio 2017 solution file is *grades-scores.sln* in the top-level directory.
 * The Python 3 solution can be found in *Python3version/grade-scores.py*.
-* The test input file I used is *results.txt* and the generated file is *results-graded.txt*; both are in the top-level directory.
+* The test input file I used is *students.txt* and the generated file is *students-graded.txt*; both are in the top-level directory.
 * I allowed for the case where a student has only one name, in which case it was assumed to be in the input file's "First Name" field and the "Surname" field is null/empty.
 * Invalid input file lines (those not containing exactly 3 fields when delimited by a comma) were ignored.
 * Duplicate student names were handled by ignoring duplicates.

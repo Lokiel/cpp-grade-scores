@@ -22,23 +22,23 @@ void printUsage(const std::string& programName)
 {
 #ifdef _DEBUG
     std::cout << "Usage: " << programName << " <INPUT_FILE>\n"
-		"where\n"
-		"    <INPUT_FILE> is a .csv file with the format:\n"
-		"\n"
-		"    <FIRST_NAME>,[SURNAME],<SCORE>\n"
-		"\n"
-		"       The <FIRSTNAME> field is mandatory.\n"
-		"       The [SURNAME] field may be empty (eg. \"Madonna\" goes by one name).\n"
-		"       The <SCORE> field is mandatory and must be numeric.\n"
-		"       Duplicate <FIRSTNAME>+[SURNAME] combinations are reported and only the\n"
-		"       first occurrence is accepted.\n"
-		"\n"
-		"   Output is written to file <INPUT_FILE>" << OUTPUT_FILE_SUFFIX << " with format:\n"
-		"\n"
-		"      [SURNAME],<FIRSTNAME>,<SCORE>\n"
-		"\n"
-		"   The output is sorted by highest <SCORE> and alphabetically on\n"
-		"   [SURNAME]+<FIRSTNAME> of students achieving that score.\n";
+        "where\n"
+        "    <INPUT_FILE> is a .csv file with the format:\n"
+        "\n"
+        "    <FIRST_NAME>,[SURNAME],<SCORE>\n"
+        "\n"
+        "       The <FIRSTNAME> field is mandatory.\n"
+        "       The [SURNAME] field may be empty (eg. \"Madonna\" goes by one name).\n"
+        "       The <SCORE> field is mandatory and must be numeric.\n"
+        "       Duplicate <FIRSTNAME>+[SURNAME] combinations are reported and only the\n"
+        "       first occurrence is accepted.\n"
+        "\n"
+        "   Output is written to file <INPUT_FILE>" << OUTPUT_FILE_SUFFIX << " with format:\n"
+        "\n"
+        "      [SURNAME],<FIRSTNAME>,<SCORE>\n"
+        "\n"
+        "   The output is sorted by highest <SCORE> and alphabetically on\n"
+        "   [SURNAME]+<FIRSTNAME> of students achieving that score.\n";
 #endif
 }
 //-----------------------------------------------------------------------------
@@ -46,7 +46,7 @@ void printError(const std::string& programName, const std::string& errorMsg)
 {
 #ifdef _DEBUG
     std::cout << "ERROR: " << errorMsg << std::endl << std::endl;
-	printUsage(programName);
+    printUsage(programName);
 #endif
 }
 
@@ -78,10 +78,10 @@ int main(int argc, char* argv[])
             }
         }   break;
 
-		default:
-			printError(EXECUTABLE_NAME, "Only one input file expected!");
-			exit(1);
-	}
+        default:
+            printError(EXECUTABLE_NAME, "Only one input file expected!");
+            exit(1);
+    }
 
     // Process the input file, adding all valid entries to the results
     //--------------------=-------------------------------------------
@@ -89,7 +89,7 @@ int main(int argc, char* argv[])
     try
     {
         std::string outputFilePath
-                        (StringUtils::newPath(argv[1], OUTPUT_FILE_SUFFIX));
+            (StringUtils::newPath(argv[1], OUTPUT_FILE_SUFFIX));
         Results::CResults results(argv[1]);
         results.save(outputFilePath);
 
@@ -98,7 +98,7 @@ int main(int argc, char* argv[])
 #endif
     }
 
-    catch(Results::InputFileException e)
+    catch (Results::InputFileException e)
     {
 #ifdef _DEBUG
         std::cerr << "\n*** " << e.what() << std::endl;
@@ -106,7 +106,7 @@ int main(int argc, char* argv[])
         exit(2);
     }
 
-    catch(Results::OutputFileException e)
+    catch (Results::OutputFileException e)
     {
 #ifdef _DEBUG
         std::cerr << "\n*** " << e.what() << std::endl;
@@ -114,6 +114,6 @@ int main(int argc, char* argv[])
         exit(3);
     }
 
-	return 0;
+    return 0;
 }
 

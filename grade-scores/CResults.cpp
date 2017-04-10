@@ -137,7 +137,7 @@ namespace Results
 
         // mResult is a set so must loop through it to find the required index 
         auto result = mResults.begin();
-        for (auto i = 0; i < index; i++)
+        for (std::size_t i = 0; i < index; i++)
             ++result;
         return *result;
     }

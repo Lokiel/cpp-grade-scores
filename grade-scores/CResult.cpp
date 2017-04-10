@@ -9,9 +9,9 @@
 namespace Results
 {
 
-    //=============================================================================
+    //=========================================================================
     // class CResult
-    //=============================================================================
+    //=========================================================================
 
     CResult::CResult(const std::string& firstName,
                      const std::string& surname,
@@ -21,25 +21,25 @@ namespace Results
         , mScore(score)
     {
     }
-
+    //-------------------------------------------------------------------------
     CResult::~CResult()
     {
     }
-
+    //-------------------------------------------------------------------------
     CResult::CResult(const CResult& source)
         : mFirstName(source.mFirstName)
         , mSurname(source.mSurname)
         , mScore(source.mScore)
     {
     }
-
+    //-------------------------------------------------------------------------
     CResult::CResult(const CResult&& source) noexcept
         : mFirstName(std::move(source.mFirstName))
         , mSurname(std::move(source.mSurname))
         , mScore(source.mScore)
     {
     }
-
+    //-------------------------------------------------------------------------
     CResult& CResult::operator=(const CResult& source)
     {
         if (this != &source)
@@ -50,7 +50,7 @@ namespace Results
         }
         return *this;
     }
-
+    //-------------------------------------------------------------------------
     CResult& CResult::operator=(const CResult&& source) noexcept
     {
         assert(this != &source);
@@ -61,22 +61,22 @@ namespace Results
 
         return *this;
     }
-
+    //-------------------------------------------------------------------------
     std::string CResult::firstName() const
     {
         return mFirstName;
     }
-
+    //-------------------------------------------------------------------------
     std::string CResult::surname() const
     {
         return mSurname;
     }
-
+    //-------------------------------------------------------------------------
     unsigned int CResult::score() const
     {
         return mScore;
     }
-
+    //-------------------------------------------------------------------------
     bool CResult::operator<(const CResult& otherResult) const
     {
         std::string lLowercaseSurname(StringUtils::lowercase(mSurname));
@@ -91,7 +91,7 @@ namespace Results
             && (StringUtils::lowercase(mFirstName)
                     < StringUtils::lowercase(otherResult.mFirstName));
     }
-
+    //-------------------------------------------------------------------------
     std::string CResult::str() const
     {
         std::stringstream ss;

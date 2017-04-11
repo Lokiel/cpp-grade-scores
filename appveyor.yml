@@ -19,13 +19,13 @@ build:
   verbosity: normal
   
 artifacts:
-- path: "{$platform}\{configuration}\grade-scores.exe"
-  name: "{platform}_{configuration}_grade-scores"
-- path: "{platform}\{configuration}\grade-scores.exe"
-  name: "{platform}_{configuration}_grade-scores"
-- path: "{configuration}\grade-scores.exe"
-  name: "{platform}_{configuration}_grade-scores"
-- path: "{configuration}\grade-scores.exe"
-  name: "{platform}_{configuration}_grade-scores"
+- path: {$platform}\{configuration}\grade-scores.exe
+  name: {platform}_{configuration}_grade-scores
+- path: {platform}\{configuration}\grade-scores.exe
+  name: {platform}_{configuration}_grade-scores
+- path: {configuration}\grade-scores.exe
+  name: {platform}_{configuration}_grade-scores
+- path: {configuration}\grade-scores.exe
+  name: {platform}_{configuration}_grade-scores
 - path: students.txt
   name: students.txt

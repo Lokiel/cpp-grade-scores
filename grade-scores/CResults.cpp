@@ -82,13 +82,10 @@ namespace Results
 
         if (file.bad())
         { 
-            file.close();
             throw InputFileException("Error reading file \"" + inputFilePath + "\"");
         }
-        else
-        {
-            file.close();
-        }
+
+        file.close();
     }
     //-------------------------------------------------------------------------
     CResults::~CResults()
@@ -110,17 +107,13 @@ namespace Results
                 << ',' << result.firstName()
                 << ',' << result.score()
                 << std::endl;
+            if (file.bad())
+            {
+                throw OutputFileException("Error writing file \"" + outputFilePath + "\"");
+            }
         }
             
-        if (file.bad())
-        {
-            file.close();
-            throw OutputFileException("Error writing file \"" + outputFilePath + "\"");
-        }
-        else
-        {
-            file.close();
-        }
+        file.close();
     }
     //-------------------------------------------------------------------------
     std::size_t CResults::size() const

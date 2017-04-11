@@ -94,10 +94,10 @@ namespace Results
         // Exceptions:
         //   Throws OutputFileException if there is an error writing outputFilePath.
  
+        // The following operations were added to support unit testing:
+        
         std::size_t size() const;
         // Number of valid results added by the constructor.
-        
-        // The following operation was added to support unit testing:
         
         CResult result(std::size_t index) const;
         // Returns the result at the specifed index.

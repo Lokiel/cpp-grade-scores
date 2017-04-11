@@ -1,16 +1,23 @@
 version: 1.0.{build}
+
 branches:
   only:
   - community
+  
 image: Visual Studio 2017
+
 configuration: 
   - Debug
   - Release
+  
 platform:
   - x64
   - x86
+  
 build:
+  project: grade-scores.sln
   verbosity: normal
+  
 artifacts:
 - path: x64\Release\grade-scores.exe
   name: x64\Release\grade-scores.exe

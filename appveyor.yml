@@ -19,13 +19,13 @@ build:
   verbosity: normal
   
 artifacts:
-- path: x64\Release
-  name: grade-scores.exe
-- path: x64\Debug
-  name: grade-scores.exe
-- path: Release
-  name: grade-scores.exe
-- path: Debug
-  name: grade-scores.exe
+- path: ($platform)\($configuration)\grade-scores.exe
+  name: ($platform)_($configuration)_grade-scores
+- path: ($platform)\($configuration)\grade-scores.exe
+  name: ($platform)_($configuration)_grade-scores
+- path: ($configuration)\grade-scores.exe
+  name: ($platform)_($configuration)_grade-scores
+- path: ($configuration)\grade-scores.exe
+  name: ($platform)_($configuration)_grade-scores
 - path: students.txt
   name: students.txt

@@ -39,6 +39,7 @@ KING, MADISON, 83
 * I implemented the solution in C++ using Visual Studio 2017 and Python 3.
 * The Visual Studio 2017 solution file is **grades-scores.sln** in the top-level directory.
 * The Python 3 script can be found in **Python3version/grade-scores.py**.
+* The C++ implementation was designed with testability in mind rather than brevity (eg. The **CResults** class could have been done away with and the functionality embedded in the **main** function of **grade-scores.cpp** but then it would not have been automatically unit testable (automated regression tests should be used where possible).
 * The test input file I used is **students.txt** and the generated file is **students-graded.txt**; both are in the top-level directory.
 * I allowed for the case where a student has only one name, in which case it was assumed to be in the input file's "First Name" field and the "Surname" field is null/empty.
 * Invalid input file lines (those not containing exactly 3 fields when delimited by a comma) were ignored.
